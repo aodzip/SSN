@@ -1,0 +1,28 @@
+网易云音乐路由分析
+默认路由
+    /#/discover                                 发现音乐-->推荐
+其他路由
+    /#/discover                                 发现音乐-->推荐
+    /#/discover/toplist                         发现音乐-->排行榜
+    /#/discover/toplist?id=71385702             发现音乐-->排行榜-->显示id=71385702的榜单列表（播放列表）
+    /#/discover/playlist                        发现音乐-->歌单
+    /#/discover/playlist/?order=new&cat=日语&limit=35&offset=35
+                                                对歌单进行分页，分类，排序
+                                                
+    /#/discover/djradio                         发现音乐-->主播电台
+    /#/discover/artist                          发现音乐-->歌手
+    /#/discover/album                           发现音乐-->新碟上架
+    
+    /#/my                                       我的音乐
+    /#/friend                                   朋友
+    /#/download                                 下载客户端
+    /#/msg                                      消息
+    /#/user                                     用户中心
+    
+    /#/playlist?id=98739693                     显示id=98739693的播放列表（没有分页）
+    /#/song?id=120019                           显示id=120019的单曲页面
+    /#/artist?id=3684                           显示id=3684的歌手页面
+    
+湿湿娘V4路由设计
+    默认路由
+        /#/list/last-/?by=publish|download&order=up|down&page=1&item=20&mode=thumbnail|table                

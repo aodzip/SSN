@@ -1,0 +1,76 @@
+    <!DOCTYPE html> 
+    <html> 
+    <head> 
+    <meta charset="utf-8" /> 
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />	 
+    <title>兼容性提示</title> 
+    <style> 
+    #main {position: absolute;width:80%;height:200px;top:30%; 
+    margin-top:-100px; text-align: center; margin-left: 10%; margin-right:10%} 
+    /*css注释：为了方便截图，对CSS代码进行换行*/ 
+    </style> 
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+    <body id="body"> 
+	    <div id="main">
+	    	<img id="logo" src="" height="256" width="256">
+	    		<h2 id="title" style="color: white;"></h2>
+	    		<h4 id="title2" style="color:  #FFFFFF;">湿湿娘提示：您目前使用的设备可能不能完全兼容本网站，浏览体验可能有所下降，您要继续吗？</h4>
+				<br>
+				<button class="btn btn-lg btn-success " onclick="go_on();" >继续浏览</button>
+				<br>
+				<br>
+				<button class="btn btn-lg btn-warning" onclick="go_check();" >测试浏览器兼容性</button>
+	    </div> 
+    </body> 
+    <script type="text/javascript" src="../js/jquery.min.js" ></script>
+    <script>
+    	$(document).ready(function(){
+    			var userAgentInfo = navigator.userAgent;
+    			var hash=window.location.hash;
+    			if (hash=="#IE"){
+    				$("#body").css("background-color","#2B82EE");
+    				$("#logo").attr("src","img/IE.png");
+    				$("#title").text("IE版本过低"); 
+    				$("#title2").text("湿湿娘提示：你的IE版本太低了，升级到最新IE才能正常使用湿湿娘哦，即便如此您还要继续吗？"); 	
+    				return;	
+    			}
+    			if (userAgentInfo.indexOf("Windows Phone") > 0) {
+    				$("#body").css("background-color","#0CB3EE");
+    				$("#logo").attr("src","img/WP.png");
+    				$("#title").text("Windows Phone"); 
+    				$("#title2").append("<br><br> <button class='btn btn-lg btn-success' onclick='WPDown();'>下载湿湿娘FM For WP</button> "); 			
+    				return;
+       			 }
+    			if (userAgentInfo.indexOf("Android") > 0) {
+    				$("#logo").attr("src","img/Android.png");
+    				$(body).css("background-color","#97C024");
+    				$("#title").text("Android"); 				
+    				return;
+       			 }
+    			if (userAgentInfo.indexOf("iOS") > 0||userAgentInfo.indexOf("iPad") > 0||userAgentInfo.indexOf("iPhone") > 0||userAgentInfo.indexOf("iPod") > 0) {
+    				$("#logo").attr("src","img/Apple.png");
+    				$(body).css("background-color","#6D6E71");
+    				$("#title").text("iOS"); 				
+    				return;
+       			 }
+     				$("#logo").attr("src","img/Default.png");
+    				$(body).css("background-color","#04AEDA");
+    				$("#title").text("未知设备"); 	
+    			
+		});
+		
+		function go_on(){
+			window.localStorage.setItem("nodetect","1");
+			window.location.href="../";
+		}
+		
+		function go_check(){
+			window.location.href="check.html";
+		}
+		
+		function WPDown(){
+			window.open("https://www.windowsphone.com/zh-cn/store/app/%E6%B9%BF%E6%B9%BF%E5%A8%98fm/c9b84654-d208-4196-9d64-1e7ffd56fcdb");
+		}
+		
+    </script>
+    </html> 

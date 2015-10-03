@@ -1,0 +1,85 @@
+    <!DOCTYPE html> 
+    <html> 
+    <head> 
+    <meta charset="utf-8" /> 
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />	 
+    <title>兼容性测试</title> 
+    <style> 
+    #main {position: absolute;width:80%;height:200px;top:30%; 
+    margin-top:-100px; text-align: center; margin-left: 10%; margin-right:10%} 
+    #body{background-color: #1ABC9C;}
+    #calc{
+	    width: 10px;
+		width:-moz-calc(10px*2);
+		width:-webkit-calc(10px*2);
+		width: calc(10px*2);
+		display: none;
+    }
+    /*css注释：为了方便截图，对CSS代码进行换行*/ 
+    </style> 
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/simple-line-icons.css"/>
+    <body id="body"> 
+	    <div id="main">
+	    		<h2 id="title" style="color: white;">浏览器兼容性测试</h2>
+	    		<h4 id="title2" style="color:  #FFFFFF;">测试您浏览器功能支持到什么程度</h4>
+				<br>
+				<button class="btn btn-lg btn-success " onclick="Test();" >开始测试</button>
+				<br>
+				<span id="test"></span>
+				<br>
+				<button class="btn btn-lg btn-warning" onclick="history.back();" >返回</button>
+	    </div> 
+	    <div id="calc"></div>
+    </body> 
+    <script type="text/javascript" src="../js/jquery.min.js" ></script>
+    <script>
+	function Test(){
+		$("#test").text("");
+		var hasAudio = !!(document.createElement('audio').canPlayType);
+		if (hasAudio){
+			
+			$("#test").append("<br>HTML5音频:支持 <span class='icon-check'></span>");
+		}else{
+			$("#test").append("<br>HTML5音频:不支持 <span class='icon-close'></span>");
+		}
+		if ($("#calc").width()==10){
+			$("#test").append("<br>CSS3特性:不支持 <span class='icon-close'></span>");
+		}else{
+			$("#test").append("<br>CSS3特性:支持 <span class='icon-check'></span>");
+		}
+		
+		if(!!window.localStorage){
+			$("#test").append("<br>HTML5存储:支持 <span class='icon-check'></span>");
+		}else{
+			$("#test").append("<br>HTML5存储:不支持 <span class='icon-close'></span>");
+		}
+		
+		if(!!window.WebSocket){
+			$("#test").append("<br>WebSocket:支持 <span class='icon-check'></span>");
+		}else{
+			$("#test").append("<br>WebSocket:不支持 <span class='icon-close'></span>");
+		}
+		
+		if(!!(navigator.getUserMedia || 
+                    navigator.webkitGetUserMedia || 
+                    navigator.mozGetUserMedia || 
+                    navigator.msGetUserMedia)){
+			$("#test").append("<br>webRTC:支持 <span class='icon-check'></span>");
+		}else{
+			$("#test").append("<br>webRTC:不支持 <span class='icon-close'></span>");
+		}
+		
+		if (window.Notification){
+			$("#test").append("<br>桌面通知:支持 <span class='icon-check'></span>");
+		}else{
+			$("#test").append("<br>桌面通知:不支持 <span class='icon-close'></span>");
+		}
+		
+		$("#test").append("<br>如果您的浏览器全部支持，那么您也许可以正常访问，否则会出现兼容性问题。<br>");
+		$("#test").css("color","white");
+		$("#test").css("font-size","20px");
+	}
+		
+    </script>
+    </html> 
