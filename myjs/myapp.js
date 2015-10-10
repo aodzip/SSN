@@ -4,9 +4,9 @@
 var myapp = {};
 $(function(){
     //api基础地址
-    myapp.apibase = "http://125.211.222.210:8023/";
+    myapp.apibase = "http://125.211.202.141:8023/";
     //文件基础地址
-    myapp.filebase = "http://125.211.222.210:8023/?cmd=file&name=";
+    myapp.filebase = "http://125.211.202.141:8023/?cmd=file&name=";
     //控制列表的排序,数量
     myapp.by = "publish";//download
     myapp.order = "down";//up
