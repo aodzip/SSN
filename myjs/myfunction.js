@@ -4,9 +4,14 @@ function sp(){
     localStorage.setItem("myPlaylist",JSON.stringify(myPlaylist));
 }
 //加载页面模板
-function loadpage(div,path,callback){
-    $(div).load(path,{},function(){
-        callback();
+//function loadpage(div,path,callback){
+//    $(div).load(path,{},function(){
+//        callback();
+//    });
+//}
+function loadpage2(div,path,callback){
+    $.get(path,{},function(data){
+        callback(div,data);
     });
 }
 //去除字符串的所有空格

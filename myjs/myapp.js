@@ -84,7 +84,9 @@ $(function(){
     router.init("/list/all/1");
     function notfound(){
         console.log("[miku:404]");
-        loadpage(myapp.$mycontent,"mypage/404.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/404.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function before(){
@@ -92,17 +94,23 @@ $(function(){
     }
     function help(){
         console.log("[miku:帮助湿湿娘]");
-        loadpage(myapp.$mycontent,"mypage/help.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/help.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function msgboard(){
         console.log("[miku:留言板]");
-        loadpage(myapp.$mycontent,"mypage/msgboard.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/msgboard.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function all(page){
         console.log("[miku:全部歌曲,page="+page+",by="+myapp.by+",order="+myapp.order+",item="+myapp.item+"]"); 
-        loadpage(myapp.$mycontent,"mypage/list.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/list.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
             loadsongpage({"cmd":"list","page":page,"item":myapp.item,
                        "by":myapp.by,"order":myapp.order});
         });
@@ -111,7 +119,9 @@ $(function(){
 //      keyword = decodeURI(keyword);
         keyword = myapp.jpcoder.getjp(myapp.jpcoder.decodejp(keyword));
         console.log("[miku:标签分类,keyword="+keyword+",page="+page+",by="+myapp.by+",order="+myapp.order+",item="+myapp.item+"]");
-        loadpage(myapp.$mycontent,"mypage/list.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/list.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
             loadsongpage({"cmd":"list","range":"tag","keyword":keyword,"page":page,"item":myapp.item,
                        "by":myapp.by,"order":myapp.order});
         });
@@ -119,42 +129,55 @@ $(function(){
     function author(keyword,page){
         keyword = myapp.jpcoder.getjp(myapp.jpcoder.decodejp(keyword));
         console.log("[miku:up主分类,keyword="+keyword+",page="+page+",by="+myapp.by+",order="+myapp.order+",item="+myapp.item+"]");
-        loadpage(myapp.$mycontent,"mypage/list.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/list.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
             loadsongpage({"cmd":"list","range":"author","keyword":keyword,"page":page,"item":myapp.item,
                        "by":myapp.by,"order":myapp.order});
         });
     }
     function myfav(page){
         console.log("[miku:个人收藏,page="+page+"]");
-        loadpage(myapp.$mycontent,"mypage/list.html",function(){
-                loadsongpage({"cmd":"favorite","act":"list","item":myapp.item,"page":page});
+        loadpage2(myapp.$mycontent,"mypage/list.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
+            loadsongpage({"cmd":"favorite","act":"list","item":myapp.item,"page":page});
         });
     }
     function myrecent(){
         console.log("[miku:个人最近播放]");
-        loadpage(myapp.$mycontent,"mypage/list.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/list.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
             loadsongpage({"cmd":"history"});
         });
     }
     function song(sm){
         console.log("[miku:单曲页面,sm="+sm+"]");
-        loadpage(myapp.$mycontent,"mypage/song.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/song.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function token(){
         console.log("[ms:token设置]");
-        loadpage(myapp.$mycontent,"mypage/token.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/token.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function retake(){
         console.log("[ms:搬运页面]");
-        loadpage(myapp.$mycontent,"mypage/retake.html",function(){
-        	capErr2();
+        loadpage2(myapp.$mycontent,"mypage/retake.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
     function moonDay(){
         console.log("[miku:湿湿娘祝福大家中秋快乐]");
-        loadpage(myapp.$mycontent,"mypage/moonDay.html",function(){
+        loadpage2(myapp.$mycontent,"mypage/moonDay.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
         });
     }
 });

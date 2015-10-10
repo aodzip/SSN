@@ -170,7 +170,7 @@ function loadsongpage(parmobj){
         //2015-9-7，收藏列表json有问题
         //console.log(data);
         data = JSON.parse(data);
-        //console.log(data);
+        console.log(data);
 		$li=getListHtml(data,myapp.mode);
         $songsUl.append($li);
         var $songdiv = $li.find(".songdiv");
