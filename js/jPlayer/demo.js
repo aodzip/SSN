@@ -3,12 +3,6 @@ $(document).ready(function(){
     jPlayer: "#jplayer_N",
     cssSelectorAncestor: "#jp_container_N"
   }, [
-    {
-      title:"東京サマーセッション  ",
-      artist:"HoneyWorks",
-      mp3:"http://file.shi-shi.net/?name=sm26776262.mp3",
-      poster: "images/m0.jpg"
-    }
   ], {
     playlistOptions: {
       enableRemoveControls: true,
