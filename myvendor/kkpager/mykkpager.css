@@ -1,0 +1,13 @@
+#kkpager .infoTextAndGoPageBtnWrap {
+    display: block;
+    margin-right:10px;
+}
+#kkpager a:hover {
+  border: 1px solid #4CB6CB;
+  background-color: #4CB6CB;
+  color: #fff;
+}
+#kkpager span.curr {
+  background:white;
+  color: #4CB6CB;
+}
