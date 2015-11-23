@@ -24,6 +24,15 @@
     </pre>
 </div>
 <script>
+	function downloadFile(fileName, content){
+		var aLink = document.createElement('a');
+		var blob = new Blob([content]);
+		var evt = document.createEvent("HTMLEvents");
+		evt.initEvent("click", false, false);
+		aLink.download = fileName;
+		aLink.href = URL.createObjectURL(blob);
+		aLink.dispatchEvent(evt);
+	}
     var hash = window.location.hash;
     var sm = hash.replace("#/song/","");
     if(sm.indexOf("?")>0){
@@ -51,7 +60,7 @@
         }
         //pv资源
         $("#songDiv .songPv").attr("src",myapp.filebase+data.ID+".mp4");
-        $(".btnDownload").attr("alt",myapp.filebase+data.ID+".mp3");
+        $(".btnDownloadMP3").attr("alt",myapp.filebase+data.ID+".mp3");
         //歌曲描述
         $("#songDiv .songDesc").text(data.DESCRIPTION);
         //点击事件，转码
@@ -65,8 +74,9 @@
             }
         });
         
-        $(".btnDownload").click(function(){
-        	window.open($(".btnDownload").attr("alt"));
+        $(".btnDownloadMP3").click(function(){
+        	//window.open($(".btnDownloadMP3").attr("alt"));
+			downloadFile(text(data.TITLE)+".mp3", $(".btnDownloadMP3"))
         }
         );
     });
