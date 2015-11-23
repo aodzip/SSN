@@ -15,6 +15,7 @@
     <p><span class="label bg-info">UP主</span><a href="#" class="songUp tag"></a></p>
     <p><span class="label bg-info">日期</span><span class="songDate"></span></p>
     <p class="songTagP"><span class="label bg-info">标签</span><span class="tagContent"></span></p>
+    <p><span class="label bg-info">标签</span><span class="songDownload"><button class="btn-default btnDownload">下载</button></span></p>
     <p><span class="label bg-info">PV</span></p>
     <video preload loop controls class="songPv" style="width:100%;height:400px;background-color: black;">
     </video>
@@ -50,6 +51,7 @@
         }
         //pv资源
         $("#songDiv .songPv").attr("src",myapp.filebase+data.ID+".mp4");
+        $(".btnDownload").attr("alt",myapp.filebase+data.ID+".mp3");
         //歌曲描述
         $("#songDiv .songDesc").text(data.DESCRIPTION);
         //点击事件，转码
@@ -62,5 +64,10 @@
                 return false;
             }
         });
+        
+        $(".btnDownload").click(function(){
+        	window.open($(".btnDownload").attr("alt"));
+        }
+        );
     });
 </script>
