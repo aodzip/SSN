@@ -1,8 +1,7 @@
 # 湿湿娘 
 __一个有爱的Vocaloid歌曲资源站__
-### [开发版首页](http://dev.shi-shi.net/)
-### [主站](http://www.shi-shi.net/)
-### [前端托管(GitHub)](https://github.com/)
+### [主站/开发版首页](http://dev.shi-shi.net/)
+### [前端托管(GitHub)](https://github.com/aodzip/SSN)
       这个Repo保存的是湿湿娘的完整前端
       没错，完整的前端
       湿湿娘采用独立的全静态前端托管于GitHub Pages
