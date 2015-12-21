@@ -57,6 +57,9 @@
     top:167.5px;
     left:8.9px;
 }
+.songName{
+    cursor: pointer;
+}
 .songName,.artistName{
     font-size: 15.9px;
     color:black;

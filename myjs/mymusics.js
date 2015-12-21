@@ -4,6 +4,19 @@ $(function(){
     $("#mycontent .listcontent").click(function(event){
           var $target = $(event.target);
           var $parent = $target.parent();
+          //点击歌曲名也能播放（在缩略图失效的情况下使用）
+          if($target.hasClass("songName")){
+              var need = $target.parents(".musicitem").find(".mysong");
+              var $this = need;
+              var href = $this.attr("data-href");
+              var title = $this.attr("title");
+              addToMyPlaylist(title,href,true);
+              //打开播放列表
+              $("#playlist").addClass("open");
+              //本地保存播放列表
+              sp();
+              return false;
+          }
           //点击图片链接，添加当前歌曲到播放列表并且播放
           if($parent.hasClass("mysong")){
               var $this = $parent;
