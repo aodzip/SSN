@@ -6,6 +6,7 @@
 		<title></title>
 	</head>
 	<body>-->
+
 		<div class="container" style="width:750px">
           <h1 class="page-header">搬运</h1>
           <div class="alert alert-info ">
@@ -20,12 +21,19 @@
           </div>
 
 		  <p>在此输入番号（如sm7241361）：<input id="txtretake" type="text"/>
-		  <p>在此输入验证码：<input id="txtretakecap" type="text"/> <img id="imgretakecap" style="float: right;height: 34px;" onclick="recap2();">
-		  <p><button class="btn btn-s-md btn-default" onclick="post_retake();">搬运</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-s-md btn-default">查看搬运队列</button></p>
+		  <p>在此输入验证码：<input id="txtretakecap" type="text"/> 
+              <img id="imgretakecap" style="height: 80px;margin-left: 30px;" onclick="recap2();">
+		  <p>
+              <button class="btn btn-s-md btn-default" onclick="post_retake();">搬运</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-s-md btn-default hidden">查看搬运队列</button>
+          </p>
 		</div>
 		<script>
+                //初始化验证码
+                recap2();
 			    $("#imgretakecap").bind("error",capErr2);
 		</script>
+
 <!--	</body>
     <script src="../mypkg.js"></script>
 </html>-->
