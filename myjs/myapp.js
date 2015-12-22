@@ -168,7 +168,7 @@ $(function(){
     }
     function retake(){
         console.log("[ms:搬运页面]");
-        loadpage2(myapp.$mycontent,"mypage/retake.html",function(div,data){
+        loadpage2(myapp.$mycontent,"mypage/react-retake.html",function(div,data){
             $(div).text("");
             $(div).append($(data));
         });

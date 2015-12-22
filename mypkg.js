@@ -13,7 +13,12 @@ loadjs("myvendor/director/director.js");
 loadjs("myvendor/sweet-alert/sweet-alert.min.js");
 loadjs("myvendor/qrcode/qrcode.js");
 loadjs("myvendor/qrcode/jquery.qrcode.js");
+loadjs("myvendor/react/react.js");
+loadjs("myvendor/react/react-dom.js");
+loadjs("myvendor/react/browser.min.js");
 
+//jsx
+loadjsx("myjs/react/class/retakeDiv.js");
 loadjs("myjs/myfunction.js");
 loadjs("myjs/myjpcoder.js");
 loadjs("myjs/myapp.js");
@@ -22,7 +27,11 @@ loadjs("myjs/mymusics.js");
 loadjs("myjs/myplayer.js");
 loadjs("myjs/mysearch.js");
 loadjs("myjs/mylogin.js");
+loadjs("myjs/react/globals.js");
 
 function loadjs(src){
     document.write("<script src="+src+"></script>");
+}
+function loadjsx(src){
+    document.write("<script type='text/babel' src="+src+"></script>");
 }
