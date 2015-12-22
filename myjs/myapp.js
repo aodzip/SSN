@@ -8,7 +8,7 @@ $(function(){
     //文件基础地址
     myapp.filebase = "http://125.211.202.141:8023/?cmd=file&name=";
     //控制列表的排序,数量
-    myapp.by = "publish";//download
+    myapp.by = "download";//download
     myapp.order = "down";//up
     myapp.item = 20;//10-20
     myapp.$mycontent = $("#mycontent .listcontent");
