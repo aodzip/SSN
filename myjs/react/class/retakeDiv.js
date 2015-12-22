@@ -45,7 +45,7 @@ window.RetakeDiv = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <button className="btn btn-primary" type="button" onClick={this.handleRetakeBtnClick}>搬运</button>
+                        <button ref="retakeBtn" className="btn btn-primary" type="button" onClick={this.handleRetakeBtnClick}>搬运</button>
                     </form>
                     <br/>
                     <div className="alert alert-warning"><h3>{info}</h3></div>
@@ -68,13 +68,16 @@ window.RetakeDiv = React.createClass({
         var sm = this.refs.smInput.value;
         var ic = this.refs.icInput.value;
         var retakeBtn = this.refs.retakeBtn;
+        console.log(retakeBtn);
         var promise = $.getJSON(globals.apibase,{"cmd":"retake","id":sm,"cap":ic});
         this.setState({isLoading:true});
         this.setState({info:"请稍等，正在提交搬运请求...",isError:false});
+        $(retakeBtn).attr("disabled","true");
         //注意作用域的变化
         var self = this;
         promise.done(function(data){
             self.setState({isLoading:false,isError:false});
+            $(retakeBtn).removeAttr("disabled");
             var status = data.STATUS;
             console.log(status);
             if(status == "[E]RequireLogin"){
