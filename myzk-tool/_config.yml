@@ -1,0 +1,6 @@
+title: 湿湿娘V4 | 周刊页 
+
+markdown: kramdown
+source:      ./
+destination: ../zk
+exclude: [LICENSE.txt,README.txt,node_modules,zktool.js]
