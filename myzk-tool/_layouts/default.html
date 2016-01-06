@@ -8,8 +8,7 @@
 	<head>
 		<title>{{site.title | prepend: " | " |prepend: page.title}}</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content=""/>
-		<meta name="keywords" content="" />
+		<meta name="description" content="{{site.description}}"/>
 		<link href="http://fonts.useso.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
 		<link rel="shortcut icon" href="myimages/favicon.ico">
 		<script src="js/jquery.min.js"></script>
@@ -47,10 +46,8 @@
 								<h1>どうも、<strong>湿湿娘です</strong>。</h1>
 							</header>
 							<p>
-                              湿湿娘建立于2009年10月，旨在帮助用户及时获取最新的V+歌曲。目前免费提供NICONICO网站白金会员拥有的高画质PV和同等质量MP3的在线播放和下载服务。湿湿娘网站曲库庞大，是目前国内最大的V+影音资源库。<br/>
-                               湿湿娘新站：<a href="http://dev.shi-shi.net" target="_blank"><strong>dev.shi-shi.net</strong></a><br/>
-							   本页主要提供周刊精彩PV的欣赏，更多功能请访问主站哦。<br/>
-							   </p>
+                              {{site.description}}
+				            </p>
 						</div>
 					</div>
 				</article>
@@ -79,10 +76,9 @@
 				<article id="contact">
 					<header>
 						<h2>联系我们</h2>
-						<span>欢迎您给我们提供建议，更期待有才华的你加入我们。</span>
 					</header>
 					<div>
-                        <span>QQ:1358583728(MIKUScallion)</span>
+					    {{site.contact}}
 					</div>
 					<footer>
 						<p id="copyright">
@@ -91,6 +87,6 @@
 						</p>
 					</footer>
 				</article>
-			</div>	
+			</div>
 </body>
 </html>
