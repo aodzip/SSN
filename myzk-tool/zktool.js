@@ -34,7 +34,7 @@ title: "+zktitle+"\n\
             if (!error && response.statusCode == 200) {
                 var data = JSON.parse(body);
                 if(data.STATUS != "[I]OK"){
-                    _4uDivHtmlArray.push("null");
+                    _4uDivHtmlArray.push(null);
                     return false;
                 }
                 //console.log(data);
