@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>湿湿娘V4 PS4</title>
+    <link rel="shortcut icon" href="http://mikuscallion.github.io/miku-ssn4.1_static/imgs/favicon.ico">
+    <style>
+        html,body{
+            padding: 0px;
+            margin: 0px;
+            height: 100%;
+        }
+        a{
+            color: inherit;
+            text-decoration: none;
+        }
+        .header{
+            position: fixed;
+            width: 100%;
+            top: 0px;
+            height: 40px;
+            background-color:#181F24;
+            font-size: 20px;
+            font-weight: bolder;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+        }
+        .ssnvideoComponent{
+            height: 100%;
+            background-color: #181F24;
+        }
+        .ssnvideoWrap{
+            background-color: black;
+            text-align: center;
+        }
+        .ssnvideo{
+            width: 100%;
+            height: 246px;
+            background-color: black;
+        }
+        @media (min-width: 768px){
+            .ssnvideo{
+                width: 700px;
+                height: 400px;
+            }
+        }
+        .ssnmodel,.loadingInfo{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #8ca1af;
+            font-size: 12px;
+        }
+        .ssnmodel a{
+            color: white;
+        }
+        .ssnplaylist{
+            height: 100%;
+            overflow:auto;
+        }
+        .item{
+            height: 110px;
+        }
+        .item.active{
+            background-color: #4D5D6E;
+        }
+        .item:hover{
+            background-color: rgba(77, 93, 110, 0.3);
+        }
+        .item.active .info{
+            color: white;
+        }
+        .coverWrap{
+            height: 100%;
+            width: 43.7%;
+            float: left;
+            text-align: center;
+        }
+        .cover{
+            width: 130px;
+            height: 100px;
+            background-image: url(http://placehold.it/130x100);
+            margin-top: 5px;
+        }
+        .info{
+            height: 100%;
+            width: 56.3%;
+            float: right;
+            text-align: center;
+            color: #8ca1af;
+        }
+        .title{
+            margin-top: 5px;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .author{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>shi-shi.net PS4</div>
+    </div>
+    <div class="ssnvideoComponent">
+        <div class="ssnvideoWrap">
+        <video class="ssnvideo" controls loop poster="http://mikuscallion.github.io/miku-ssn4.1_static/imgs/banner.jpg"></video>
+        </div>
+        <div class="loadingInfo"><a href="#">...loading...</a></div>
+        <div class="ssnplaylist">
+<!--
+            <a href="#" class="itemClick">
+                <div class="item">
+                    <div class="coverWrap">
+                        <img class="cover" src="http://125.211.202.141:8023/?cmd=file&name=sm28197922.jpg"/>
+                    </div>
+                    <div class="info">
+                        <div class="title">【結月ゆかり】 アスノヨゾラ哨戒班 【カバー】</div>
+                        <div class="author">ダブルレン</div>
+                    </div>
+                </div>
+            </a>
+            <a href='#' class='itemClick'>
+            <div class='item'>
+                <div class='coverWrap'>
+                    <img class='cover' src=''/>
+                </div>
+                <div class='info'>
+                    <div class='title'></div>
+                    <div class='author'></div>
+                </div>
+            </div>
+            </a>
+-->
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var apibase = "http://125.211.202.141:8023/";
+            var filebase = "http://125.211.202.141:8023/?cmd=file&name=";
+            var dataparms = {cmd: "list", page: 1, item: 10, by: "download", order: "down"};
+            var playmodel = ".mp4";
+            var $ssnvideo = $(".ssnvideo");
+            var loading = false;
+            var clientH = document.documentElement.clientHeight;
+            
+            $(".ssnplaylist").height(clientH - $(".ssnvideo").height() - 30);
+            $(".ssnplaylist").delegate("a.itemClick","click", function(event) { 
+                //console.log($(this)[0]);
+                var title = $(this).find(".title").text();
+                var img = $(this).find(".cover").attr("src");
+                var src = img.replace(".jpg",playmodel);
+                //console.log(title,img,mp3,mp4);
+                $(".ssnplaylist .item").removeClass("active");
+                $(this).find(".item").addClass("active");
+                
+                $ssnvideo.attr({"title":title,"poster":img,"src":src});
+                $ssnvideo[0].play();
+            });
+            $(".ssnplaylist").scroll(function(event){
+                if(loading){
+                    return;
+                }
+                var scrollTop = $(this).scrollTop();
+                var itemNum = $(this).children().length;
+                var itemHeight = 110;
+                var ssnplaylistH = $(this).height();
+                var needLoad = itemHeight*itemNum - ssnplaylistH*2.5;
+                //console.log(scrollTop,needLoad)
+                if(scrollTop >= needLoad){
+                    dataparms.page ++;
+                    loadssnplaylist(dataparms);
+                    //console.log("加载更多");
+                }
+            });
+            loadssnplaylist(dataparms);
+            function loadssnplaylist(parms){
+                loading = true;
+                $(".loadingInfo").text("...loading...");
+                $.getJSON(apibase,parms,function(data){
+                    var doms = toDoms(data);
+                    $(".ssnplaylist").append(doms);
+                    loading = false;
+                    $(".loadingInfo").text("...loaded...");
+                });
+                function toDoms(data){
+                    if(!data.STATUS == "[I]OK"){
+                        return [];
+                    }
+                    var doms = [];
+                    for(var i=0;i<data.COUNTPERPAGE;i++){
+                        var song = data[i];
+                        var cover = filebase+song.ID+".jpg";
+                        var title = song.TITLE;
+                        var author = song.AUTHOR;
+                        
+                        var $dom = $("<a href='javascript:void(0);' class='itemClick'>\
+                                        <div class='item'>\
+                                            <div class='coverWrap'>\
+                                                <img class='cover' src="+cover+" />\
+                                            </div>\
+                                            <div class='info'>\
+                                                <div class='title'>"+title+"</div>\
+                                                <div class='author'>"+author+"</div>\
+                                            </div>\
+                                        </div>\
+                                      </a>");
+                        doms.push($dom);
+                    }
+                    return doms;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
