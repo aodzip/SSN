@@ -9,12 +9,10 @@
     text-align: center;
     line-height: 40px; }
   #ssn-ps4 .contain {
-    height: calc(100% - 40px);
-    display: block;
-    display: flex; }
+    height: calc(100% - 40px); }
     #ssn-ps4 .contain .video-wrap {
       width: 70%;
-      flex: 1;
+      float: left;
       height: 100%;
       padding: 5px;
       box-sizing: border-box;
@@ -24,30 +22,32 @@
         height: 100%;
         background-color: black; }
     #ssn-ps4 .contain .list {
+      display: inline-block;
       width: 30%;
       height: 100%;
       position: relative;
-      background-color: #181F24; }
+      background-color: #181F24;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      box-sizing: border-box; }
       #ssn-ps4 .contain .list .iscroll {
         height: 100%;
         overflow: hidden; }
         #ssn-ps4 .contain .list .iscroll .content .item {
           cursor: pointer;
-          display: block;
-          display: flex;
           box-sizing: border-box;
           padding: 5px;
           height: 110px; }
           #ssn-ps4 .contain .list .iscroll .content .item .cover {
             height: 100px;
             width: 130px;
+            display: inline-block;
+            float: left;
             background-image: url(http://placehold.it/130x100); }
           #ssn-ps4 .contain .list .iscroll .content .item .info {
-            width: calc(100% - 100px);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: inline-block;
+            width: calc(100% - 130px);
+            height: 100%;
             text-align: center;
             color: #8ca1af; }
             #ssn-ps4 .contain .list .iscroll .content .item .info .title {

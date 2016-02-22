@@ -12,13 +12,14 @@
     .contain{
         height:calc(100% - 40px);
         //background-color:aquamarine;
-        display: block;
-        display: flex;
+        //display: block;
+        //display: flex;
         //list与videoWrap的比列需要响应式配置
         //目前适合宽屏（>1024）显示器
         .video-wrap{
             width: 70%;
-            flex: 1;
+            float: left;
+            //flex: 1;
             height: 100%;
             padding: 5px;
             box-sizing: border-box;
@@ -30,18 +31,22 @@
             }
         }
         .list{
+            display: inline-block;
             width: 30%;
             height: 100%;
             position: relative;
             background-color: #181F24;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-sizing: border-box;
             .iscroll{
                 height:100%;
                 overflow: hidden;
                 .content{
                     .item{
                         cursor: pointer;
-                        display: block;
-                        display: flex;
+                        //display: block;
+                        //display: flex;
                         box-sizing: border-box;
                         padding: 5px;
                         height: 110px;
@@ -49,16 +54,19 @@
                         .cover{
                             height: 100px;
                             width: 130px;
+                            display: inline-block;
+                            float: left;
                             background-image: url(http://placehold.it/130x100);
                         }
                         .info{
-                            width: calc(100% - 100px);
-                            flex: 1;
+                            display:inline-block;
+                            width: calc(100% - 130px);
+                            height: 100%;
+                            //flex: 1;
                             
-                            
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
+                            //display: flex;
+                            //flex-direction: column;
+                            //justify-content: center;
                             text-align: center;
                             color:#8ca1af;
                             //background-color: blue;
