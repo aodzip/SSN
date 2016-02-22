@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>湿湿娘V4 PS4</title>
+    <style>
+        html,body{
+            margin: 0px;
+            height: 0px;
+            height: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="ssn-ps4">
+        <div class="head">
+            <div>shi-shi.net PS4</div>
+        </div>
+        <div class="contain">
+            <div class="video-wrap">
+                <video class="video" controls loop></video>
+            </div>
+            <div class="list">
+                <div class="iscroll">
+                    <div>
+                    <div class="content">
+    <!--
+                        <div class="item active">
+                            <img class="cover" src="http://125.211.202.141:8023/?cmd=file&name=sm28197922.jpg"/>
+                            <div class="info">
+                                <div class="title">【結月ゆかり】 アスノヨゾラ哨戒班 【カバー】</div>
+                                <div class="author">ダブルレン</div>
+                            </div>
+                        </div>
+    -->
+                    </div>
+                    <!--滚动到底部自动看到这个，然后又消失，完美-->
+                    <div class="load-info">...loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/iScroll/5.1.3/iscroll.min.js"></script>
+    <script>
+        $(function(){
+            var apibase = "http://125.211.202.141:8023/";
+            var filebase = "http://125.211.202.141:8023/?cmd=file&name=";
+            var dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
+            
+            var $listContent = $("#ssn-ps4 .list .content");
+            var $video = $("#ssn-ps4 .video");
+            
+            var iscrollList = null;
+            //init
+            (function(){
+                loadssnplaylist(dataparms);
+                iscrollList = new IScroll("#ssn-ps4 .list .iscroll",{
+                    //支持鼠标与点击
+                    mouseWheel: true, click: true
+                });
+                iscrollList.on("scrollEnd",function(){
+                    var needLoadOffset = 100;
+                    if(Math.abs(this.y) > Math.abs(this.maxScrollY)-needLoadOffset){
+                        //console.log("need load");
+                        dataparms.page++;
+                        loadssnplaylist(dataparms);
+                    }
+                });
+            })();
+            
+            $listContent.delegate(".item","click", function(event) {
+                var title = $(this).find(".title").text();
+                var img = $(this).find(".cover").attr("src");
+                var src = img.replace(".jpg",".mp4");
+                //移除兄弟item active
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+                
+                $video.attr({"title":title,"poster":img,"src":src});
+                $video[0].play();
+            });
+            function loadssnplaylist(parms){
+                $.getJSON(apibase,parms,function(data){
+                    var doms = toDoms(data);
+                    $listContent.append(doms);
+                    //在dom渲染完成后才能正确计算大小
+                    iscrollList.refresh();
+                });
+                function toDoms(data){
+                    if(!data.STATUS == "[I]OK"){
+                        return [];
+                    }
+                    var doms = [];
+                    for(var i=0;i<data.COUNTPERPAGE;i++){
+                        var song = data[i];
+                        var cover = filebase+song.ID+".jpg";
+                        var title = song.TITLE;
+                        var author = song.AUTHOR;
+                        
+                        var $dom = $("<div class='item'>\
+                                            <img class='cover' src="+cover+" />\
+                                            <div class='info'>\
+                                                <div class='title'>"+title+"</div>\
+                                                <div class='author'>"+author+"</div>\
+                                            </div>\
+                                        </div>");
+                        doms.push($dom);
+                    }
+                    return doms;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

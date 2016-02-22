@@ -1,0 +1,78 @@
+#ssn-ps4 {
+  height: 100%; }
+  #ssn-ps4 .head {
+    height: 40px;
+    background-color: #181F24;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    line-height: 40px; }
+  #ssn-ps4 .contain {
+    height: calc(100% - 40px);
+    display: flex; }
+    #ssn-ps4 .contain .list {
+      width: 30%;
+      height: 100%;
+      position: relative;
+      background-color: #181F24; }
+      #ssn-ps4 .contain .list .iscroll {
+        height: 100%;
+        overflow: hidden; }
+        #ssn-ps4 .contain .list .iscroll .content .item {
+          cursor: pointer;
+          display: flex;
+          box-sizing: border-box;
+          padding: 5px;
+          height: 110px; }
+          #ssn-ps4 .contain .list .iscroll .content .item .cover {
+            height: 100px;
+            width: 130px;
+            background-image: url(http://placehold.it/130x100); }
+          #ssn-ps4 .contain .list .iscroll .content .item .info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: #8ca1af; }
+            #ssn-ps4 .contain .list .iscroll .content .item .info .title {
+              font-size: 16px;
+              margin-bottom: 8px; }
+            #ssn-ps4 .contain .list .iscroll .content .item .info .author {
+              font-size: 14px; }
+        #ssn-ps4 .contain .list .iscroll .content .item.active {
+          background-color: #4D5D6E; }
+          #ssn-ps4 .contain .list .iscroll .content .item.active .info {
+            color: white; }
+        #ssn-ps4 .contain .list .iscroll .content .item:hover {
+          background-color: rgba(77, 93, 110, 0.3); }
+        #ssn-ps4 .contain .list .iscroll .load-info {
+          width: 100%;
+          text-align: center;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          color: #8ca1af;
+          font-size: 12px; }
+    #ssn-ps4 .contain .video-wrap {
+      flex: 1;
+      height: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      background-color: #181F24; }
+      #ssn-ps4 .contain .video-wrap .video {
+        width: 100%;
+        height: 100%;
+        background-color: black; }
+  @media (max-width: 991px) {
+    #ssn-ps4 .contain {
+      display: block; }
+      #ssn-ps4 .contain .video-wrap {
+        width: 100%;
+        height: 40%; }
+      #ssn-ps4 .contain .list {
+        width: 100%;
+        height: 60%; } }
+
+/*# sourceMappingURL=index.css.map */

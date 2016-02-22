@@ -1,0 +1,107 @@
+#ssn-ps4{
+    height: 100%;
+    .head{
+        height: 40px;
+        background-color:#181F24;
+        font-size: 20px;
+        font-weight: bolder;
+        color: white;
+        text-align: center;
+        line-height: 40px;
+    }
+    .contain{
+        height:calc(100% - 40px);
+        //background-color:aquamarine;
+        display: flex;
+        //list与videoWrap的比列需要响应式配置
+        //目前适合宽屏（>1024）显示器
+        .list{
+            width: 30%;
+            height: 100%;
+            position: relative;
+            background-color: #181F24;
+            .iscroll{
+                height:100%;
+                overflow: hidden;
+                .content{
+                    .item{
+                        cursor: pointer;
+                        display: flex;
+                        box-sizing: border-box;
+                        padding: 5px;
+                        height: 110px;
+                        //background-color: aqua;
+                        .cover{
+                            height: 100px;
+                            width: 130px;
+                            background-image: url(http://placehold.it/130x100);
+                        }
+                        .info{
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            text-align: center;
+                            color:#8ca1af;
+                            //background-color: blue;
+                            .title{
+                                font-size: 16px;
+                                margin-bottom: 8px;
+                            }
+                            .author{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .item.active{
+                        background-color: #4D5D6E;
+                        .info{
+                            color: white;
+                        }
+                    }
+                    .item:hover{
+                        //颜色透明度为active的％30
+                        background-color: rgba(77, 93, 110, 0.3);
+                    }
+                }
+                .load-info{
+                width: 100%;
+                text-align: center;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: #8ca1af;
+                font-size: 12px;
+            }
+            }
+        }
+        .video-wrap{
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: #181F24;
+            .video{
+                width: 100%;
+                height: 100%;
+                background-color: black;
+            }
+        }
+        //
+    }
+    //非中等屏幕（桌面显示器，小与等于 991px)
+    //bootstrap规定md为992
+    @media (max-width: 991px) {
+        .contain{
+            display: block;
+            .video-wrap{
+                width: 100%;
+                height: 40%;
+            }
+            .list{
+                width: 100%;
+                height: 60%;
+            }
+        }
+    }
+}
