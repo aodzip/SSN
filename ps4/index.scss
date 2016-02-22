@@ -12,9 +12,23 @@
     .contain{
         height:calc(100% - 40px);
         //background-color:aquamarine;
+        display: block;
         display: flex;
         //list与videoWrap的比列需要响应式配置
         //目前适合宽屏（>1024）显示器
+        .video-wrap{
+            width: 70%;
+            flex: 1;
+            height: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            background-color: #181F24;
+            .video{
+                width: 100%;
+                height: 100%;
+                background-color: black;
+            }
+        }
         .list{
             width: 30%;
             height: 100%;
@@ -26,6 +40,7 @@
                 .content{
                     .item{
                         cursor: pointer;
+                        display: block;
                         display: flex;
                         box-sizing: border-box;
                         padding: 5px;
@@ -37,7 +52,10 @@
                             background-image: url(http://placehold.it/130x100);
                         }
                         .info{
+                            width: calc(100% - 100px);
                             flex: 1;
+                            
+                            
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
@@ -73,18 +91,6 @@
                 color: #8ca1af;
                 font-size: 12px;
             }
-            }
-        }
-        .video-wrap{
-            flex: 1;
-            height: 100%;
-            padding: 5px;
-            box-sizing: border-box;
-            background-color: #181F24;
-            .video{
-                width: 100%;
-                height: 100%;
-                background-color: black;
             }
         }
         //
