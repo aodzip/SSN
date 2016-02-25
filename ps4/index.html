@@ -13,7 +13,8 @@
             height: 100%;
         }
     </style>
-    <link rel="stylesheet" href="http://www.shi-shi.net/ps4/index.css">
+<!--    <link rel="stylesheet" href="http://www.shi-shi.net/ps4/index.css">-->
+    <link rel="stylesheet" href="index.css">
     <!--百度统计代码，2016.02.20-->
     <script>
     var _hmt = _hmt || [];
@@ -35,7 +36,7 @@
                 <video class="video" controls loop poster="http://mikuscallion.github.io/miku-ssn4.1_static/imgs/banner.jpg"></video>
             </div>
             <div class="list">
-                <div class="filter default">
+                <div class="filter">
                     <div class="tag">
                         <span></span>
                     </div>
@@ -71,6 +72,7 @@
             var filebase = "http://125.211.202.141:8023/?cmd=file&name=";
             var dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
             
+            var $list = $("#ssn-ps4 .list");
             var $listContent = $("#ssn-ps4 .list .content");
             var $video = $("#ssn-ps4 .video");
             var $filter = $("#ssn-ps4 .filter");
@@ -78,6 +80,7 @@
             var loadedall = false;
             
             var iscrollList = null;
+            var needScrollToO = false;
             //init
             (function(){
                 loadssnplaylist(dataparms);
@@ -119,9 +122,10 @@
                 }
                 dataparms = {cmd: "list",range:"author",keyword:author,page: 1, item: 20, by: "download", order: "down"};
                 $listContent.text("");
+                needScrollToO = true;
                 loadssnplaylist(dataparms);
                 
-                $filter.removeClass("default");
+                $list.addClass("filter");
                 $filter.find(".tag span").text(author);
                 return false;
             });
@@ -130,9 +134,10 @@
                 loadedall = false;
                 dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
                 $listContent.text("");
+                needScrollToO = true;
                 loadssnplaylist(dataparms);
                 //console.log("remove");
-                $filter.addClass("default");
+                $list.removeClass("filter");
             });
             function loadssnplaylist(parms){
                 if(loadedall){
@@ -144,11 +149,16 @@
                     $listContent.append(doms);
                     //在dom渲染完成后才能正确计算大小
                     iscrollList.refresh();
+                    if(needScrollToO){
+                        iscrollList.scrollTo(0,0);
+                        needScrollToO = false;
+                    }
                 });
                 function toDoms(data){
                     //console.log(!(data.STATUS == "[I]OK"));
                     if(!(data.STATUS == "[I]OK")){
                         //alert("hello");
+                        $loadinfo.text("...loaded all...");
                         return [];
                     }
                     if(data.TOTALPAGE == data.CURRENTPAGE){

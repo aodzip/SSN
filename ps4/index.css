@@ -31,6 +31,7 @@
       padding-bottom: 5px;
       box-sizing: border-box; }
       #ssn-ps4 .contain .list .filter {
+        display: none;
         width: 100%;
         height: 40px;
         box-sizing: border-box;
@@ -56,10 +57,8 @@
           #ssn-ps4 .contain .list .filter .reset i {
             font-size: 30px;
             color: #8ca1af; }
-      #ssn-ps4 .contain .list .filter.default {
-        display: none; }
       #ssn-ps4 .contain .list .iscroll {
-        height: calc(100% - 40px);
+        height: 100%;
         overflow: hidden; }
         #ssn-ps4 .contain .list .iscroll .content .item {
           cursor: pointer;
@@ -101,6 +100,10 @@
           text-align: center;
           color: #8ca1af;
           font-size: 12px; }
+    #ssn-ps4 .contain .list.filter .filter {
+      display: block; }
+    #ssn-ps4 .contain .list.filter .iscroll {
+      height: calc(100% - 40px); }
   @media (max-width: 991px) {
     #ssn-ps4 .contain {
       display: block; }
