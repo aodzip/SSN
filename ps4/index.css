@@ -1,0 +1,114 @@
+#ssn-ps4 {
+  height: 100%; }
+  #ssn-ps4 .head {
+    height: 40px;
+    background-color: #181F24;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    line-height: 40px; }
+  #ssn-ps4 .contain {
+    height: calc(100% - 40px); }
+    #ssn-ps4 .contain .video-wrap {
+      width: 70%;
+      float: left;
+      height: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      background-color: #181F24; }
+      #ssn-ps4 .contain .video-wrap .video {
+        width: 100%;
+        height: 100%;
+        background-color: black; }
+    #ssn-ps4 .contain .list {
+      display: inline-block;
+      width: 30%;
+      height: 100%;
+      position: relative;
+      background-color: #181F24;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      box-sizing: border-box; }
+      #ssn-ps4 .contain .list .filter {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 5px; }
+        #ssn-ps4 .contain .list .filter .tag {
+          display: inline-block;
+          width: calc(100% - 30px);
+          height: 100%;
+          float: left; }
+          #ssn-ps4 .contain .list .filter .tag span {
+            line-height: 30px;
+            padding: 5px;
+            background-color: #4D5D6E;
+            color: white;
+            border-radius: 5px; }
+        #ssn-ps4 .contain .list .filter .reset {
+          width: 30px;
+          height: 100%;
+          float: right;
+          display: inline-block;
+          text-align: center;
+          cursor: pointer; }
+          #ssn-ps4 .contain .list .filter .reset i {
+            font-size: 30px;
+            color: #8ca1af; }
+      #ssn-ps4 .contain .list .filter.default {
+        display: none; }
+      #ssn-ps4 .contain .list .iscroll {
+        height: calc(100% - 40px);
+        overflow: hidden; }
+        #ssn-ps4 .contain .list .iscroll .content .item {
+          cursor: pointer;
+          box-sizing: border-box;
+          padding: 5px;
+          height: 110px; }
+          #ssn-ps4 .contain .list .iscroll .content .item .cover {
+            cursor: pointer;
+            height: 100px;
+            width: 130px;
+            display: inline-block;
+            float: left;
+            background-image: url(http://placehold.it/130x100); }
+          #ssn-ps4 .contain .list .iscroll .content .item .info {
+            display: inline-block;
+            width: calc(100% - 130px);
+            height: 100%;
+            text-align: center;
+            color: #8ca1af; }
+            #ssn-ps4 .contain .list .iscroll .content .item .info .title {
+              font-size: 16px;
+              margin-bottom: 8px; }
+            #ssn-ps4 .contain .list .iscroll .content .item .info .author {
+              cursor: pointer;
+              font-size: 14px; }
+            #ssn-ps4 .contain .list .iscroll .content .item .info .author:hover {
+              color: white; }
+        #ssn-ps4 .contain .list .iscroll .content .item.active {
+          background-color: #4D5D6E; }
+          #ssn-ps4 .contain .list .iscroll .content .item.active .info {
+            color: white; }
+        #ssn-ps4 .contain .list .iscroll .content .item:hover {
+          background-color: rgba(77, 93, 110, 0.3); }
+        #ssn-ps4 .contain .list .iscroll .load-info {
+          width: 100%;
+          text-align: center;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          color: #8ca1af;
+          font-size: 12px; }
+  @media (max-width: 991px) {
+    #ssn-ps4 .contain {
+      display: block; }
+      #ssn-ps4 .contain .video-wrap {
+        width: 100%;
+        height: 40%; }
+      #ssn-ps4 .contain .list {
+        width: 100%;
+        height: 60%; } }
+
+/*# sourceMappingURL=index.css.map */

@@ -39,8 +39,46 @@
             padding-top: 5px;
             padding-bottom: 5px;
             box-sizing: border-box;
+            .filter{
+                width: 100%;
+                height: 40px;
+                box-sizing: border-box;
+                padding: 5px;
+                //background-color: antiquewhite;
+                .tag{
+                    display: inline-block;
+                    width:calc(100% - 30px);
+                    height: 100%;
+                    float: left;
+                    //background-color:aquamarine;
+                    //text-align: center;
+                    span{
+                        line-height: 30px;
+                        padding: 5px;
+                        background-color:#4D5D6E;
+                        color: white;
+                        border-radius: 5px;
+                    }
+                }
+                .reset{
+                    width: 30px;
+                    height: 100%;
+                    float: right;
+                    //background-color: aqua;
+                    display: inline-block;
+                    text-align: center;
+                    cursor: pointer;
+                    i{
+                        font-size: 30px;
+                        color: #8ca1af;
+                    }
+                }
+            }
+            .filter.default{
+                display: none;
+            }
             .iscroll{
-                height:100%;
+                height:calc(100% - 40px);
                 overflow: hidden;
                 .content{
                     .item{
@@ -52,6 +90,7 @@
                         height: 110px;
                         //background-color: aqua;
                         .cover{
+                            cursor: pointer;
                             height: 100px;
                             width: 130px;
                             display: inline-block;
@@ -71,11 +110,16 @@
                             color:#8ca1af;
                             //background-color: blue;
                             .title{
+                                //cursor: pointer;
                                 font-size: 16px;
                                 margin-bottom: 8px;
                             }
                             .author{
+                                cursor: pointer;
                                 font-size: 14px;
+                            }
+                            .author:hover{
+                                color: white;
                             }
                         }
                     }
