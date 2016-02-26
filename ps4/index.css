@@ -51,7 +51,7 @@
           #ssn-ps4 .contain .video-wrap .info .author span:hover {
             color: white; }
         #ssn-ps4 .contain .video-wrap .info .tags {
-          text-align: left; }
+          text-align: center; }
           #ssn-ps4 .contain .video-wrap .info .tags span {
             cursor: pointer;
             padding: 0 3px;
