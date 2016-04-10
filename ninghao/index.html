@@ -11,59 +11,50 @@
         <h1 class="page-header">湿湿播放器<small> | shi-shi player</small></h1>
         <div class="row">
             <div class="col-xs-12">
-                <div id="shi-shi_player">
+                <div id="ssplayer">
                     <span>湿湿播放器正在努力加载中 ...</span>
                 </div>
             </div>
         </div>
     </div>
     <script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
-    <script src="jwplayer/jwplayer.js"></script>
-    <script>/*免费版key，6*/jwplayer.key = 'ykJW0P/zCddxjKqCieAWuZFn0JNryFJPivZg8Q==';</script>
+    <script src="jwplayer-7.3.5/jwplayer.js"></script>
+    <script>/*免费版key，7*/jwplayer.key = '8+GbcbblVMx2cImaPddSr/RkTb/kDu2ThsH3MA==';</script>
     <script>
         $(function(){
             var apibase = "http://125.211.202.141:8023/";
             var dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
-            (function init(){
-                loadPlaylist(function(playlist){
-                    //配置
-                    jwplayer("shi-shi_player").setup({
-                        width: '100%',
-                        aspectratio: '16:9',//1080p
-                        autostart: false,
-                        mute: false,
-                        repeat: true,
-                        displaytitle: false,
-                        playlist:playlist,
-                        listbar: {
-                            position: 'right',
-                            size: '300'
-                        }
-                    });
-                });
-            })();
-            
-            function loadPlaylist(callback){
-                $.getJSON(apibase,dataparms,function(data){
-                    var playlist = toJwplayerPlaylist(data);
-                    callback(playlist);
-                    function toJwplayerPlaylist(data){
-                        if(!(data.STATUS == "[I]OK")){
-                            return [];
-                        }
-                        var playlist = [];
-                        for(var i=0;i<data.COUNTPERPAGE;i++){
-                            var item = data[i];
-                            item.file = apibase+"MP4/"+item.ID+".mp4";
-                            item.image = apibase+"IMG/"+item.ID+".jpg";
-                            item.title = item.TITLE;
-                            item.description = item.AUTHOR;
-                            playlist.push(item);
-                        }
-                        return playlist;
+            var ssplayer = jwplayer("ssplayer");
+            //配置
+            ssplayer.setup({
+                width: '100%',
+                aspectratio: '16:9',//1080p
+                autostart: false,
+                mute: false,
+                repeat: false,
+                displaytitle: false,
+                displaydescription:false,
+                visualplaylist:true,
+                playlist: [
+                    {
+                        sources: [
+                            {
+                                file: 'http://125.211.202.141:8023/MP4/sm28481785.mp4'
+                            }
+                        ],
+                        tracks: [
+                            {
+                                file: 'sm28481785-chs.vtt',
+                                kind: 'captions',
+                                label: 'CHS'
+                            }
+                        ],
+                        image: 'http://125.211.202.141:8023/IMG/sm28481785.jpg',
+                        title:'【ウォルピス社】声を歌ってみました【提供】',
+                        description: 'ウォルピスカーター'
                     }
-                });
-            }
+                ]
+            });
         });
     </script>
 </body>
