@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <title>shi-shi player</title>
+    <style>
+        .jw-skin-vapor .jw-captions-text {
+            background-color: inherit;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -27,6 +32,9 @@
             var ssplayer = jwplayer("ssplayer");
             //配置
             ssplayer.setup({
+                skin : {
+                    name:"vapor"
+                },
                 width: '100%',
                 aspectratio: '16:9',//1080p
                 autostart: false,
