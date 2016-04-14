@@ -53,6 +53,7 @@ $(function(){
     });
     //路由配置
     var router = Router({
+        'hatsunemiku-projectdiva-x':hatsunemiku_projectdiva_x,
         //帮助湿湿娘
         "/help":help,
         //留言板
@@ -95,6 +96,13 @@ $(function(){
     function help(){
         console.log("[miku:帮助湿湿娘]");
         loadpage2(myapp.$mycontent,"mypage/help.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
+        });
+    }
+    function hatsunemiku_projectdiva_x(){
+        console.log("[miku:《初音未来：歌姬计划X》歌曲索引]");
+        loadpage2(myapp.$mycontent,"mypage/hatsunemiku-projectdiva-x.html",function(div,data){
             $(div).text("");
             $(div).append($(data));
         });

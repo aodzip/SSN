@@ -177,13 +177,14 @@ function loadsongpage(parmobj){
     $songsUl.append('');
     $("#divload").stop();
     $("#divload").fadeIn(400);
+    console.log(parmobj);
     $.get(myapp.apibase,parmobj,function(data){
         $("#divload").fadeOut(500);
         $songsUl.text("");
         //2015-9-7，收藏列表json有问题
         //console.log(data);
         data = JSON.parse(data);
-        //console.log(data);
+        console.log(data);
 		$li=getListHtml(data,myapp.mode);
         $songsUl.append($li);
         var $songdiv = $li.find(".songdiv");
