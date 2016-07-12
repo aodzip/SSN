@@ -73,7 +73,8 @@ $(function(){
         //个人设置，长期认证设置
         "/setting/token":token,
         //搬运功能
-        "/retake":retake
+        "/retake":retake,
+        "/update": update
         //,
         //节日祝福
         //节日祝福,中秋节
@@ -82,7 +83,15 @@ $(function(){
     //设置未匹配到路由时的回调函数
     router.configure({"notfound":notfound,"before":before});
     //设置初始路由
-    router.init("/list/all/1");
+    //router.init("/list/all/1");
+    router.init("/update");
+    function update(){
+        console.log("[miku:update]");
+        loadpage2(myapp.$mycontent,"mypage/update.html",function(div,data){
+            $(div).text("");
+            $(div).append($(data));
+        });
+    }
     function notfound(){
         console.log("[miku:404]");
         loadpage2(myapp.$mycontent,"mypage/404.html",function(div,data){
