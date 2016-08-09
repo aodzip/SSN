@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>PV | (￣▽￣)湿湿娘(⌒▽⌒)</title>
+    <link href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        html,body{
+            margin: 0px;
+            height: 0px;
+            height: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="ssn-ps4">
+        <div class="head">
+            <div>shi-shi.net PV</div>
+        </div>
+        <div class="contain">
+            <div class="video-wrap">
+                <div class="info">
+                    <div class="guide">
+                        <p>欢迎使用湿湿娘PV特别版</p>
+                        <p>请在在页面最左边的滚动列表中选择歌曲，点击播放PV吧。</p>
+                        <p>点击P主或者歌曲标签即可使用该标签过滤列表，听您最想听的歌。</p>
+                    </div>
+                    <div class="unguide">
+                        <div class="title"><span></span></div>
+                        <div class="author"><span></span></div>
+                        <div class="tags"><span></span></div>
+                    </div>
+                </div>
+                <video class="video" controls loop poster="banner.jpg"></video>
+            </div>
+            <div class="list">
+                <div class="filter">
+                    <div class="tag">
+                        <span></span>
+                    </div>
+                    <div class="reset">
+                        <i class="fa fa-remove"></i>
+                    </div>
+                </div>
+                <div class="iscroll">
+                    <div>
+                    <div class="content">
+    <!--
+                        <div class="item active">
+                            <img class="cover" src="http://125.211.202.141:8023/?cmd=file&name=sm28197922.jpg"/>
+                            <div class="info">
+                                <div class="title"><span>【結月ゆかり】 アスノヨゾラ哨戒班 【カバー】</span></div>
+                                <div class="author"><span>ダブルレン</span></div>
+                            </div>
+                        </div>
+    -->
+                    </div>
+                    <!--滚动到底部自动看到这个，然后又消失，完美-->
+                    <div class="load-info">...loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/iScroll/5.1.3/iscroll.min.js"></script>
+    <script>
+        $(function(){
+            var apibase = "http://221.208.194.89/";
+            var filebase = "http://221.208.194.89/?cmd=file&name=";
+            var dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
+            
+            var $list = $("#ssn-ps4 .list");
+            var $listContent = $("#ssn-ps4 .list .content");
+            var $video = $("#ssn-ps4 .video");
+            var $videoWrap = $("#ssn-ps4 .video-wrap");
+            var $filter = $("#ssn-ps4 .filter");
+            var $loadinfo = $("#ssn-ps4 .load-info");
+            var loadedall = false;
+            
+            var iscrollList = null;
+            var needScrollToO = false;
+            //init
+            (function(){
+                loadssnplaylist(dataparms);
+                iscrollList = new IScroll("#ssn-ps4 .list .iscroll",{
+                    //支持鼠标与点击
+                    mouseWheel: true, click: true
+                });
+                iscrollList.on("scrollEnd",function(){
+                    var needLoadOffset = 100;
+                    if(Math.abs(this.y) > Math.abs(this.maxScrollY)-needLoadOffset){
+                        //console.log("need load");
+                        dataparms.page++;
+                        loadssnplaylist(dataparms);
+                    }
+                });
+            })();
+            
+            $listContent.delegate(".item","click", function(event) {
+                var $item = $(this);
+                //var $item = $(event.target).parents(".item");
+                var id = $item.attr("data-id");
+                var title = $item.find(".title").text();
+                var author = $item.find(".author").text();
+                var img = $item.find(".cover").attr("src");
+                var src = img.replace(".jpg",".mp4");
+                //移除兄弟item active
+                $item.siblings().removeClass("active");
+                $item.addClass("active");
+                $videoWrap.addClass("isplay");
+                $videoWrap.find(".title span").text(title);
+                $videoWrap.find(".author span").text(author);
+                $videoWrap.find(".tags").text("");
+                $video.attr({"title":title,"poster":img,"src":src});
+                $video[0].play();
+                
+                $.getJSON(apibase,{"cmd":"query","id":id},function(data){
+                    //console.log(data);
+                    if(data.STATUS == "[I]OK"){
+                        var tags = data.TAG.split(",");
+                        tags.splice(0,1);
+                        for(i in tags){
+                            var tag = tags[i];
+                            $videoWrap.find(".tags").append($("<span>"+tag+"</span>"));
+                            //console.log(tag);
+                        }
+                    }
+                });
+            });
+            $listContent.delegate(".author span","click",handleAuthorTagClick);
+            $videoWrap.delegate(".author span","click",handleAuthorTagClick);
+            $videoWrap.delegate(".tags span","click",function(event){
+                //alert("hello");
+                $loadinfo.text("...loading...");
+                loadedall = false;
+                //console.log($(this).text());
+                var tag = $(this).text();
+                var tagOld = $filter.find(".tag span").text();
+                console.log(tag,tagOld);
+                if(tag == tagOld){
+                    return false;
+                }
+                dataparms = {cmd: "list",range:"tag",keyword:tag,page: 1, item: 20, by: "download", order: "down"};
+                $listContent.text("");
+                needScrollToO = true;
+                loadssnplaylist(dataparms);
+                
+                $list.addClass("filter");
+                $filter.find(".tag span").text(tag);
+                return false;
+            });
+            $videoWrap.click(function(){
+                $(this).find(".info").fadeToggle();
+            });
+            $filter.delegate(".reset","click", function(event) {
+                $loadinfo.text("...loading...");
+                loadedall = false;
+                dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
+                $listContent.text("");
+                needScrollToO = true;
+                loadssnplaylist(dataparms);
+                //console.log("remove");
+                $list.removeClass("filter");
+            });
+            function loadssnplaylist(parms){
+                if(loadedall){
+                    return;
+                }
+                $.getJSON(apibase,parms,function(data){
+                    //console.log(data);
+                    var doms = toDoms(data);
+                    $listContent.append(doms);
+                    //在dom渲染完成后才能正确计算大小
+                    iscrollList.refresh();
+                    if(needScrollToO){
+                        iscrollList.scrollTo(0,0);
+                        needScrollToO = false;
+                    }
+                });
+                function toDoms(data){
+                    //console.log(!(data.STATUS == "[I]OK"));
+                    if(!(data.STATUS == "[I]OK")){
+                        //alert("hello");
+                        $loadinfo.text("...loaded all...");
+                        return [];
+                    }
+                    if(data.TOTALPAGE == data.CURRENTPAGE){
+                        $loadinfo.text("...loaded all...");
+                        loadedall = true;
+                    }
+                    var doms = [];
+                    for(var i=0;i<data.COUNTPERPAGE;i++){
+                        var song = data[i];
+                        var cover = filebase+song.ID+".jpg";
+                        var title = song.TITLE;
+                        var author = song.AUTHOR;
+                        
+                        var $dom = $("<div class='item' data-id="+song.ID+">\
+                                            <img class='cover' src="+cover+" />\
+                                            <div class='info'>\
+                                                <div class='title'><span>"+title+"</span></div>\
+                                                <div class='author'><span>"+author+"</span></div>\
+                                            </div>\
+                                        </div>");
+                        doms.push($dom);
+                    }
+                    return doms;
+                }
+            }
+            function handleAuthorTagClick(event){
+                $loadinfo.text("...loading...");
+                loadedall = false;
+                //console.log($(this).text());
+                var author = $(this).text();
+                var tagOld = $filter.find(".tag span").text();
+                if(author == tagOld){
+                    return false;
+                }
+                dataparms = {cmd: "list",range:"author",keyword:author,page: 1, item: 20, by: "download", order: "down"};
+                $listContent.text("");
+                needScrollToO = true;
+                loadssnplaylist(dataparms);
+                
+                $list.addClass("filter");
+                $filter.find(".tag span").text(author);
+                return false;
+            }
+        });
+        //todo 优化js代码
+    </script>
+</body>
+</html>
