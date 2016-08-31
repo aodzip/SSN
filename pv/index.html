@@ -13,6 +13,15 @@
         }
     </style>
     <link rel="stylesheet" href="index.css">
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?a89940f2181ca765cdb12402a0829c11";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
 </head>
 <body>
     <div id="ssn-ps4">
@@ -71,7 +80,7 @@
             var apibase = "http://221.208.194.89/";
             var filebase = "http://221.208.194.89/?cmd=file&name=";
             var dataparms = {cmd: "list", page: 1, item: 20, by: "download", order: "down"};
-            
+
             var $list = $("#ssn-ps4 .list");
             var $listContent = $("#ssn-ps4 .list .content");
             var $video = $("#ssn-ps4 .video");
@@ -79,7 +88,7 @@
             var $filter = $("#ssn-ps4 .filter");
             var $loadinfo = $("#ssn-ps4 .load-info");
             var loadedall = false;
-            
+
             var iscrollList = null;
             var needScrollToO = false;
             //init
@@ -98,7 +107,7 @@
                     }
                 });
             })();
-            
+
             $listContent.delegate(".item","click", function(event) {
                 var $item = $(this);
                 //var $item = $(event.target).parents(".item");
@@ -116,7 +125,7 @@
                 $videoWrap.find(".tags").text("");
                 $video.attr({"title":title,"poster":img,"src":src});
                 $video[0].play();
-                
+
                 $.getJSON(apibase,{"cmd":"query","id":id},function(data){
                     //console.log(data);
                     if(data.STATUS == "[I]OK"){
@@ -147,7 +156,7 @@
                 $listContent.text("");
                 needScrollToO = true;
                 loadssnplaylist(dataparms);
-                
+
                 $list.addClass("filter");
                 $filter.find(".tag span").text(tag);
                 return false;
@@ -197,7 +206,7 @@
                         var cover = filebase+song.ID+".jpg";
                         var title = song.TITLE;
                         var author = song.AUTHOR;
-                        
+
                         var $dom = $("<div class='item' data-id="+song.ID+">\
                                             <img class='cover' src="+cover+" />\
                                             <div class='info'>\
@@ -223,7 +232,7 @@
                 $listContent.text("");
                 needScrollToO = true;
                 loadssnplaylist(dataparms);
-                
+
                 $list.addClass("filter");
                 $filter.find(".tag span").text(author);
                 return false;
